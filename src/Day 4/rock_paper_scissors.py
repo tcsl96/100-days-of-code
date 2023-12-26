@@ -1,3 +1,5 @@
+"""Rock, paper, scissors game."""
+
 from random import randint
 
 ROCK = '''
@@ -33,28 +35,38 @@ LOSE_MESSAGE = "You lose."
 
 choices_list = [ROCK, PAPER, SCISSORS]
 
-def check_winner(player_choice, computer_choice) -> None:
-    if (player_choice == 0 and computer_choice == 2):
+def check_winner(player_c: int, computer_c: int) -> None:
+    """
+    Summary:
+        Checks who won the game, the player o the computer.
+
+    Args:
+        __player_choice (int): The player choice: 0 - Rock, 1 - Paper, 2 - Scissors.
+        __computer_choice (int): The computer choice: 0 - Rock, 1 - Paper, 2 - Scissors
+    """
+    if (player_c == 0 and computer_c == 2):
         print(WIN_MESSAGE)
         return None
-    if (player_choice == 2 and computer_choice == 0):
+    if (player_c == 2 and computer_c == 0):
         print(LOSE_MESSAGE)
         return None
-    if (player_choice > computer_choice):
+    if player_c > computer_c:
         print(WIN_MESSAGE)
-    elif (player_choice == computer_choice):
+    elif player_c == computer_c:
         print(DRAW_MESSAGE)
     else:
         print(LOSE_MESSAGE)
+    return None
 
 if __name__ == "__main__":
-    while (True):
+    while True:
         try:
-            player_choice = int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors: ").strip())
-        except:
+            player_choice = int(input("What do you choose? Type 0 for Rock, \
+                                      1 for Paper or 2 for Scissors: ").strip())
+        except ValueError:
             print("Please, select a valid choice.")
             continue
-        if (player_choice not in (0, 1, 2)):
+        if player_choice not in (0, 1, 2):
             print("Please, select a valid choice.")
             continue
         break
